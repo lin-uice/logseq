@@ -11,9 +11,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v1
-              with:
-                    submodules: true
+
 
             - name: Setup Node.js 10.x
               uses: actions/setup-node@master
@@ -22,10 +20,13 @@ jobs:
 
             
             - name: setup aliyun oss
-              uses: manyuanrong/setup-ossutil@master
+              uses: manyuanrong/setup-ossutil@v3.0
               with:
                   endpoint: oss-cn-shanghai.aliyuncs.com
                   access-key-id: ${{ secrets.ACCESS_KEY_ID }}
                   access-key-secret: ${{ secrets.ACCESS_KEY_SECRET }}
             - name: cp files to aliyun
               run: ossutil cp -ruf public oss://mumukehao/ # 将xxxxx改为创建的Bucket名称，-rf表示覆盖
+              
+              
+
