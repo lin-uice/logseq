@@ -1,0 +1,29 @@
+# workflow name
+name: alioss
+
+# 在main分支上有push命令时触发该流程
+
+on:
+  push
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+          
+
+            - name: Setup Node.js 10.x
+              uses: actions/setup-node@master
+              with:
+                  node-version: '10.x'
+
+            
+            - name: setup aliyun oss
+              uses: manyuanrong/setup-ossutil@master
+              with:
+                  endpoint: oss-cn-shanghai.aliyuncs.com
+                  access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+                  access-key-secret: ${{ secrets.ACCESS_KEY_SECRET }}
+            - name: cp files to aliyun
+              run: ossutil cp -ruf public oss://mumukehao # 将xxxxx改为创建的Bucket名称，-rf表示覆盖
