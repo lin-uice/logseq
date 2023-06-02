@@ -15,11 +15,11 @@ jobs:
             - name: setup aliyun oss
               uses: manyuanrong/setup-ossutil@v3.0
               with:
-                  endpoint: "oss.aliyuncs.com"
+                  endpoint: 	oss-cn-shanghai.aliyuncs.com
                   access-key-id: ${{ secrets.ACCESS_KEY_ID }}
                   access-key-secret: ${{ secrets.ACCESS_KEY_SECRET }}
             - name: cp files to aliyun
-              run: ossutil cp -ruf public oss://mumukehao/ # 将xxxxx改为创建的Bucket名称，-rf表示覆盖
+              run: ossutil cp -ruf public oss://mumukehao # 将xxxxx改为创建的Bucket名称，-rf表示覆盖
               
               
 
